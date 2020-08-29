@@ -1,0 +1,122 @@
+
+[
+  {
+    "intents": 
+    [
+      { "pathName": "Greetings",
+        "pathIntents": [
+          { "intentName": "greetings_onboarding",
+            "training": [
+              "Hola",
+              "Buenos dias",
+              "Ola",
+              "Ciao",
+              "Hello",
+              "Buenas",
+              "Bonjour"
+            ],
+            "entities": [],
+            "response": ["//> Greeting Second step"]
+          }
+        ]
+      },
+      { "pathName": "Onboarding",
+        "pathIntents": [
+          { "intentName": "greetings_onboarding",
+            "training": ["//> Greeting Second step"],
+            "entities": [],
+            "response": [
+              "Hola, soy Apolo, el asistante virtual de Luz Verde",
+              "Estás a minutos de obtener un crédito instantáneo",
+              "Sólo necesito de tu ayuda para evaluar y calificar tu perfil crediticio :)",
+              "Es muy fácil y rápido, y todo desde la comodidad de tú Whats!",
+              "Empezemos?"
+            ]
+          },
+          { "intentName": "get_user_basics",
+            "inputContext": "",
+            "training": ["si"],
+            "entities": [
+              {
+                "prompt": "Me podrias proporcionar tu(s) nombre(s) porfavor?",
+                "entityName": "userName",
+                "entity": "sys.given_name",
+                "list": true
+              },
+              {
+                "prompt": "Gracias ${userName}, y cual es tu apellido paterno?",
+                "entityName": "userLastName1",
+                "entity": "sys.last_name",
+                "list": false
+              },
+              {
+                "prompt": "Y tu apellido materno?",
+                "entityName": "userLastName2",
+                "entity": "sys.last_name",
+                "list": false
+              }
+            ],
+            "response": [
+              "Muchas gracias",
+              "Ahora, me podrías ayudar tomando una foto de tu credencial de identidad oficial?",
+              "Una foto por el frente, y luego otra foto por el reverso por favor",
+              "//> init flujo del intento user_onboarding.get_user_documents"
+            ]
+          },
+          { "intentName": "get_user_documents",
+            "training": ["http://www.doc.jpg/"],
+            "entities": [
+              {
+                "prompt": "Me podrias proporcionar una foto de tu credential de identidad?",
+                "entityName": "userCredential1",
+                "entity": "sys.url",
+                "list": false
+              },
+              {
+                "prompt": "Gracias, y el reverso por favor?",
+                "entityName": "userCredential2",
+                "entity": "sys.url",
+                "list": false
+              }
+            ],
+            "response": [
+              "Muchas gracias, ya casi terminemos ;)",
+              "Sólo nos falta que te tomes una selfie para confirmar tu identidad",
+              "//> init flujo del intento picture_auth.user_picture"
+            ]
+          },
+
+
+      { "pathName": "Picture_auth",
+        "pathIntents": [      
+          {
+            "isLast": true,
+            "intentName": "user_picture",
+            "training": ["http://pic.jpeg"],
+            "entities": [
+              {
+                "prompt": "Me podrias enviar una foto tuya, tomada en los siguientes 2 minutos por favor?",
+                "entityName": "user_sign_in_picture",
+                "entity": "sys.url",
+                "list": false
+              }
+            ],
+            "response": [
+              "Gracias, estoy confirmando tu identidad",
+              "Listo, un gusto verte de nuevo ${userName}",
+              "Recuerdes que todo lo que creas conmigo esta protegido y encryptado en blockchain SEIF® ;)"
+            ],
+            "outputContext": [
+              {
+                "name": "user_signed_in",
+                "lifespanCount": "10"
+              }
+            ]
+          }
+    ],
+    "entities": [
+    ]
+  }
+]
+
+  
