@@ -8,7 +8,8 @@
           { "intentName": "greetings_onboarding",
             "training": [
               "Hola",
-              "Buenos dias",
+              "Buenos días",
+              "Hey",
               "Ola",
               "Ciao",
               "Hello",
@@ -28,9 +29,8 @@
             "response": [
               "Hola, soy Apolo, el asistante virtual de Luz Verde",
               "Estás a minutos de obtener un crédito instantáneo",
-              "Sólo necesito de tu ayuda para evaluar y calificar tu perfil crediticio :)",
-              "Es muy fácil y rápido, y todo desde la comodidad de tú Whats!",
-              "Empezemos?"
+              "Por favor, ayúdame a evaluarte y calificar tu perfil crediticio :)",
+              "¿Empezamos?"
             ]
           },
           { "intentName": "get_user_basics",
@@ -38,19 +38,19 @@
             "training": ["si"],
             "entities": [
               {
-                "prompt": "Me podrias proporcionar tu(s) nombre(s) porfavor?",
+                "prompt": "Por favor escribe tu(s) nombre(s)",
                 "entityName": "userName",
                 "entity": "sys.given_name",
                 "list": true
               },
               {
-                "prompt": "Gracias ${userName}, y cual es tu apellido paterno?",
+                "prompt": "Gracias ${userName}, ahora escribe tu apellido paterno",
                 "entityName": "userLastName1",
                 "entity": "sys.last_name",
                 "list": false
               },
               {
-                "prompt": "Y tu apellido materno?",
+                "prompt": "¿Y tu apellido materno?",
                 "entityName": "userLastName2",
                 "entity": "sys.last_name",
                 "list": false
@@ -58,8 +58,8 @@
             ],
             "response": [
               "Muchas gracias",
-              "Ahora, me podrías ayudar tomando una foto de tu credencial de identidad oficial?",
-              "Una foto por el frente, y luego otra foto por el reverso por favor",
+              "Ahora, por favor envíame fotos de tu carnet de identidad tomada en los siguientes 2 minutos",
+              "Una foto por el frente, y otra foto por el reverso por favor",
               "//> init flujo del intento user_onboarding.get_user_documents"
             ]
           },
@@ -67,21 +67,21 @@
             "training": ["http://www.doc.jpg/"],
             "entities": [
               {
-                "prompt": "Me podrias proporcionar una foto de tu credential de identidad?",
+                "prompt": "Envíame fotos de tu carnet de identidad tomanda en los siguientes 2 minutos",
                 "entityName": "userCredential1",
                 "entity": "sys.url",
                 "list": false
               },
               {
-                "prompt": "Gracias, y el reverso por favor?",
+                "prompt": "Gracias, ahora el reverso por favor",
                 "entityName": "userCredential2",
                 "entity": "sys.url",
                 "list": false
               }
             ],
             "response": [
-              "Muchas gracias, ya casi terminemos ;)",
-              "Sólo nos falta que te tomes una selfie para confirmar tu identidad"
+              "Muchas gracias, ya casi terminamos ;)",
+              "Sólo nos falta una selfie tomada en los siguientes 2 minutos para confirmar tu identidad"
             ],
             "outputContext": [
               {
@@ -98,10 +98,10 @@
               "//> init flujo de intento ${intentName}"
             ],
             "response": [
-              "Listo, tus datos personales han sido verificados con éxito! Vamos muy bien!",
-              "Ya que hemos validado tu identidad, ahora sólo tienes que aprobar los términos y condiciones para continuar:",
+              "¡Listo, tus datos personales han sido verificados con éxito! ¡Vamos muy bien!",
+              "Tu identidad ha sido verificada con éxito, por favor aprueba los términos y condiciones para continuar:",
               "**** terminos y condiciones ****",
-              "Cuando estas listo, escribe 'autorizo'para continuar"
+              "Cuando estés listo escribe 'autorizo'para continuar"
             ],
             "outputContext": [
               {
@@ -120,14 +120,14 @@
             "training": ["http://pic.jpeg"],
             "entities": [
               {
-                "prompt": "Me podrias enviar una foto tuya, tomada en los siguientes 2 minutos por favor?",
+                "prompt": "Por favor envíame una selfie tomada en los siguientes 2 minutos",
                 "entityName": "user_picture",
                 "entity": "sys.url",
                 "list": false
               }
             ],
             "response": [
-              "Gracias, te ves muy bien ! Estoy confirmando tu identidad"
+              "¡Gracias, te ves muy bien ! Estoy verificando tu identidad"
             ],
             "outputContext": [
               {
@@ -145,16 +145,16 @@
             "inputContext": ["user_onboarded"], 
             "trainig":[
               "autorizo",
-              "estoy deacuerdo", 
+              "estoy de acuerdo", 
               "autorización",
               "autorizado",
               "doy mi autorización",
               "doy mi acuerdo"
             ],
             "response":[
-              "Muchas gracias por tú confianza <Nombre>, tus datos estarán protegidos con encriptación y serán resguardados con la tecnología más sofisticada en ciberseguridad basada en Blockchain! ;)",
-              "Sólo nos falta un paso para terminar, tu última autorización para evaluar tu historial de crédito!",
-              "**** autorización verificación historial de credito ****",
+              "Gracias por tu confianza <Nombre>, toda tu información será encriptada y protegida con tecnología en Blockchain! ;)",
+              "Sólo falta una última autorización para que Luz Verde pueda evaluar tu historial de crédito",
+              "**** autorización verificación historial de crédito ****",
               "Escribe 'Autorizo' para continuar"
             ],
             "outputContext": [
@@ -178,9 +178,9 @@
               "doy mi acuerdo"
             ],
             "response": [
-              "Felicidades, has terminado el trámite!",
-              "En breve te notificaremos por este medio si tu credito ha sido aprobado",
-              "Muchas gracias por haberte tomado el tiempo, fue un placer atenderte!" 
+              "Felicidades, hemos terminado el trámite!",
+              "Te notificaremos por este medio cuando tu crédito ha sido aprobado",
+              "¡Muchas gracias, fue un placer atenderte!" 
             ]
           }
         ]
