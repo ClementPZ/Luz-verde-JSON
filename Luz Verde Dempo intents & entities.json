@@ -81,42 +81,112 @@
             ],
             "response": [
               "Muchas gracias, ya casi terminemos ;)",
-              "Sólo nos falta que te tomes una selfie para confirmar tu identidad",
-              "//> init flujo del intento picture_auth.user_picture"
-            ]
+              "Sólo nos falta que te tomes una selfie para confirmar tu identidad"
+            ],
+            "outputContext": [
+              {
+                "name": "send_picture",
+                "lifespanCount": "3"
+              }
+            ] 
           },
-
-
+          { "intentName": "closing_onboarding",
+            "inputContext": [
+              "picture_confirmed"
+            ],
+            "training": [
+              "//> init flujo de intento ${intentName}"
+            ],
+            "response": [
+              "Listo, tus datos personales han sido verificados con éxito! Vamos muy bien!",
+              "Ya que hemos validado tu identidad, ahora sólo tienes que aprobar los términos y condiciones para continuar:",
+              "**** terminos y condiciones ****",
+              "Cuando estas listo, escribe 'autorizo'para continuar"
+            ],
+            "outputContext": [
+              {
+                "name": "user_onboarded",
+                "lifespanCount": "5"
+              }
+            ]
+          }
+        ]
+      },
       { "pathName": "Picture_auth",
         "pathIntents": [      
-          {
+          { "intentName": "get_user_picture",
+            "inputContext": "send_picture",
             "isLast": true,
-            "intentName": "user_picture",
             "training": ["http://pic.jpeg"],
             "entities": [
               {
                 "prompt": "Me podrias enviar una foto tuya, tomada en los siguientes 2 minutos por favor?",
-                "entityName": "user_sign_in_picture",
+                "entityName": "user_picture",
                 "entity": "sys.url",
                 "list": false
               }
             ],
             "response": [
-              "Gracias, estoy confirmando tu identidad",
-              "Listo, un gusto verte de nuevo ${userName}",
-              "Recuerdes que todo lo que creas conmigo esta protegido y encryptado en blockchain SEIF® ;)"
+              "Gracias, te ves muy bien ! Estoy confirmando tu identidad"
             ],
             "outputContext": [
               {
-                "name": "user_signed_in",
-                "lifespanCount": "10"
+              "name":"picture_confirmed",
+              "lifespanCount":"5"
               }
             ]
           }
+        ]
+      },
+      {
+        "pathName": "Autorizations",
+        "pathIntents": [
+          { "intentName":"autorización_terminos_y_condiciones",
+            "inputContext": ["user_onboarded"], 
+            "trainig":[
+              "autorizo",
+              "estoy deacuerdo", 
+              "autorización",
+              "autorizado",
+              "doy mi autorización",
+              "doy mi acuerdo"
+            ],
+            "response":[
+              "Muchas gracias por tú confianza <Nombre>, tus datos estarán protegidos con encriptación y serán resguardados con la tecnología más sofisticada en ciberseguridad basada en Blockchain! ;)",
+              "Sólo nos falta un paso para terminar, tu última autorización para evaluar tu historial de crédito!",
+              "**** autorización verificación historial de credito ****",
+              "Escribe 'Autorizo' para continuar"
+            ],
+            "outputContext": [
+              {
+                "name": "to_autorizacíon_check_history",
+                "lifespanCount": "5"
+              }
+            ]
+          },
+          {
+            "intentName": "autorización_credit_history_check",
+            "inputContext": [
+              "to_autorizacíon_check_history"
+            ],
+            "training": [
+              "autorizo",
+              "estoy deacuerdo", 
+              "autorización",
+              "autorizado",
+              "doy mi autorización",
+              "doy mi acuerdo"
+            ],
+            "response": [
+              "Felicidades, has terminado el trámite!",
+              "En breve te notificaremos por este medio si tu credito ha sido aprobado",
+              "Muchas gracias por haberte tomado el tiempo, fue un placer atenderte!" 
+            ]
+          }
+        ]
+      }
     ],
     "entities": [
     ]
   }
 ]
-
-  
