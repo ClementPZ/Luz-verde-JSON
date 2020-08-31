@@ -1,4 +1,3 @@
-
 [
   {
     "intents": 
@@ -8,13 +7,17 @@
           { "intentName": "greetings_onboarding",
             "training": [
               "Hola",
-              "Buenos días",
-              "Hey",
               "Ola",
+              "Buenos dias",
+              "Buenas noches",
+              "Buenas tardes",
               "Ciao",
+              "Helo",
               "Hello",
               "Buenas",
-              "Bonjour"
+              "Bonjour",
+              "Hey",
+              "Hola hola"
             ],
             "entities": [],
             "response": ["//> Greeting Second step"]
@@ -35,7 +38,24 @@
           },
           { "intentName": "get_user_basics",
             "inputContext": "",
-            "training": ["si"],
+            "training": [
+              "sí",
+              "si",
+              "listo",
+              "go",
+              "ok",
+              "si quiero prinicipiar",
+              "vamos",
+              "empezamos",
+              "quiero empezar",
+              "iniciar",
+              "quiero iniciar", 
+              "Iniciamos",
+              "Start registración",
+              "empezar mi registración",
+              "Sign up",
+              "Start"
+            ],
             "entities": [
               {
                 "prompt": "Por favor escribe tu(s) nombre(s)",
@@ -143,8 +163,16 @@
         "pathIntents": [
           { "intentName":"autorización_terminos_y_condiciones",
             "inputContext": ["user_onboarded"], 
-            "trainig":[
-              "autorizo",
+            "training":[
+              "autorizó",
+              "permito",
+              "permisión",
+              "acceptó",
+              "aprobó",
+              "confirmar",
+              "si, confirmo mi autorización",
+              "si, estoy deacuerdo",
+              "doy mi permisión",
               "estoy de acuerdo", 
               "autorización",
               "autorizado",
@@ -170,8 +198,16 @@
               "to_autorizacíon_check_history"
             ],
             "training": [
-              "autorizo",
-              "estoy deacuerdo", 
+              "autorizó",
+              "permito",
+              "permisión",
+              "acceptó",
+              "aprobó",
+              "confirmar",
+              "si, confirmo mi autorización",
+              "si, estoy deacuerdo",
+              "doy mi permisión",
+              "estoy de acuerdo", 
               "autorización",
               "autorizado",
               "doy mi autorización",
